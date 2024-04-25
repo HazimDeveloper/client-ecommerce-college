@@ -1,5 +1,12 @@
+<?php
+
+require './functions.php';
+
+$product = query("SELECT * FROM product");
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
   <head>
     <title>Breyerstore.com</title>
     <meta charset="utf-8">
@@ -20,10 +27,21 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
-  <body>
+  <style>
+    html{
+      scroll-behavior: smooth
+    }
+    @media only screen and (max-width: 600px) {
+  .site-logo img {
+    width: 100px;
+  }
+}
+  </style>
+  <body >
   
   <div class="site-wrap">
-    <header class="site-navbar" role="banner">
+    <header class="site-navbar" role="banner" style="background: rgb(215,23,23);
+    background: linear-gradient(90deg, rgba(215,23,23,1) 0%, rgba(254,254,254,0) 0%, rgba(23,191,230,1) 100%);">
       <div class="site-navbar-top">
         <div class="container">
           <div class="row align-items-center">
@@ -51,130 +69,56 @@
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 mb-0"><a href="">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Shop</strong></div>
+          <div class="col-md-12 mb-0"><a href="">Home</a> <span class="mx-2 mb-0">/</span> <a href="#contact">Get In Touch</a> </div>
         </div>
       </div>
     </div>
 <!-- Jumbotron -->
-<div class="mx-auto mt-2 rounded" style="background-image: url('images/header-image.jpg'); height: 500px;width:749px;object-fit: cover;">
+<div class="mx-auto mt-2 rounded" >
+  <img src="images/header-image.jpg" class="mx-auto d-flex" style="object-fit: fill;">
 </div>
 <!-- Jumbotron -->
     <div class="site-section">
       <div class="container">
 
         <div class="row mb-5">
-          <div class="col-md-9 order-2">
+          <div class="col-md-12 order-2">
 
             <div class="row">
               <div class="col-md-12 mb-5">
                 <div class="float-md-left mb-4"><h2 class="text-black h5">Shop All</h2></div>
-                <div class="d-flex">
-                  <div class="dropdown mr-1 ml-md-auto">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Latest
-                    </button>
-                
-                  </div>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
-                
-                  </div>
-                </div>
+             
               </div>
             </div>
+            
             <div class="row mb-5">
-
+<?php foreach($product as $prod) : ?>
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
                     
-                    <a href=""><img src="images/admin-shirt.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    <a href=""><img src="images/admin-shirt.jpg" style="" alt="Image placeholder" class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="">Administrative Engineering</a></h3>
-                    <p class="mb-0">Finding perfect Casing</p>
-                    <p class="text-primary font-weight-bold">RM50</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      Buy Now
-                    </button>
+                    <h3><a href=""><?= $prod["productName"] ?></a></h3>
+                    <p class="mb-0"><?= $prod["productDesc"] ?></p>
+                    <p class="text-primary font-weight-bold">RM<?= $prod["productPrice"] ?></p>
+                   
+                    <a href="order.php?id=<?= $prod["productID"]?>" class="btn btn-primary" >Order Now</a>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-              
-                    <a href="shop-single.html"><img src="images/chef-breyer.jpg" style="height: 250px;object-fit: contain;" alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Culinary</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold">RM50</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      Buy Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/eletrical-engineering.jpg" style="height: 250px;object-fit: contain;" alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Eletrical Engineering</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold">RM50</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      Buy Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/computer-engineering.jpg" alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Computer Engineering</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold">RM50</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      Buy Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="images/lanyard.jpg" alt="Image placeholder" class="img-fluid"></a>
-                  </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">Lanyard</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold">RM50</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      Buy Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-
 
             </div>
-  
+           
           </div>
-
+          <?php endforeach;?>
         </div>
         
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="contact">
       <div class="row">
         <div class="col-md-12">
           <h2 class="h3 mb-3 text-black">Get In Touch</h2>
